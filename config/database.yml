@@ -78,9 +78,13 @@ test:
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
-#
+# #
+# production:
+#   <<: *default
+#   database: trading_cards_production
+#   username: trading_cards
+#   password: <%= ENV["TRADING_CARDS_DATABASE_PASSWORD"] %>
+
 production:
   <<: *default
-  database: trading_cards_production
-  username: trading_cards
-  password: <%= ENV["TRADING_CARDS_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
