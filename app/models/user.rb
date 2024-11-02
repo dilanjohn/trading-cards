@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :cards, dependent: :destroy
+  has_many :wants
+  has_many :wanted_cards, through: :wants, source: :card
 
   validates :first_name, presence: true
   validates :last_name, presence: true

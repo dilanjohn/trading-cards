@@ -1,61 +1,42 @@
 <div class="container">
   <div class="collection-header">
     <h1>Trading Card Collection</h1>
-    
-    <% if user_signed_in? %>
-      <div class="user-dashboard">
-        <h2>Welcome, <%= current_user.first_name %>!</h2>
-        <%= link_to 'Add a new card', new_card_path, class: 'button primary' %>
-      </div>
-    <% else %>
-      <div class="welcome-section">
-        <h2>Welcome to Dilan.co!</h2>
-        <p>Create your own digital collection of trading cards. Share with friends and keep track of your valuable cards.</p>
-        <div class="cta-buttons">
-          <%= link_to 'Sign Up to Start Your Collection', new_user_registration_path, class: 'button primary' %>
-          <%= link_to 'Log In', new_user_session_path, class: 'button secondary' %>
+    <%= link_to "Add New Card", new_card_path, class: "button primary" if user_signed_in? %>
+  </div>
+
+  <div class="filters-section">
+    <%= form_tag cards_path, method: :get, class: "filters-form" do %>
+      <div class="filters-row">
+        <div class="filter-group">
+          <%= select_tag :user_id,
+              options_from_collection_for_select(@users, :id, :first_name, params[:user_id]),
+              prompt: "All Collectors",
+              class: "filter-select",
+              onchange: "this.form.submit()" %>
         </div>
+
+        <div class="search-group">
+          <%= text_field_tag :search, 
+              params[:search], 
+              placeholder: "Search cards...",
+              class: "search-input" %>
+          <%= submit_tag "Search", class: "button primary" %>
+        </div>
+
+        <% if params[:user_id].present? || params[:search].present? %>
+          <%= link_to "Clear Filters", cards_path, class: "button secondary" %>
+        <% end %>
       </div>
     <% end %>
   </div>
 
-  <% if @cards.any? %>
-    <div class="cards-grid">
-      <% @cards.each do |card| %>
-        <%= link_to card_path(card), class: "card" do %>
-          <div class="card-image">
-            <%= image_tag card.image if card.image.attached? %>
-          </div>
-          <div class="card-content">
-            <h3 class="card-title"><%= card.title %></h3>
-            
-            <div class="card-metadata">
-              <span class="card-type <%= card.card_type.downcase %>">
-                <%= card.card_type %>
-              </span>
-              <span class="card-status <%= card.status.gsub(' ', '-') %>">
-                <%= card.status %>
-              </span>
-            </div>
-            
-            <div class="card-price">
-              <%= number_to_currency(card.price) %>
-            </div>
-            
-            <div class="card-owner">
-              Added by <%= card.user.first_name %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  <% else %>
-    <div class="empty-state">
-      <p>No cards have been added to the collection yet.</p>
-      <% if user_signed_in? %>
-        <p>Be the first to add a card!</p>
-        <%= link_to 'Add a Card', new_card_path, class: 'button primary' %>
-      <% end %>
-    </div>
-  <% end %>
+  <div class="cards-grid">
+    <% if @cards.any? %>
+      <%= render @cards %>
+    <% else %>
+      <div class="no-results">
+        <p>No cards found matching your criteria.</p>
+      </div>
+    <% end %>
+  </div>
 </div> 

@@ -28,8 +28,25 @@
 
         <% if @card.description.present? %>
           <div class="card-description">
-            <h3>Description</h3>
             <p><%= @card.description %></p>
+          </div>
+        <% end %>
+
+        <% if user_signed_in? %>
+          <% if current_user != @card.user %>
+            <div class="want-section">
+              <%= render 'want_button', card: @card, wanted: @wanted %>
+              <%= render 'want_text', card: @card %>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="want-section">
+            <div class="sign-in-prompt">
+              <%= link_to "Sign in", new_user_session_path, class: "button primary" %> 
+              or 
+              <%= link_to "Join", new_user_registration_path %> 
+              to show interest in this card!
+            </div>
           </div>
         <% end %>
 

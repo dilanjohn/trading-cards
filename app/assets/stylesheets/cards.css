@@ -149,7 +149,12 @@ body {
 .card-actions {
   display: flex;
   gap: 10px;
+  align-items: center;
   flex-wrap: wrap;
+}
+
+.card-actions form {
+  margin: 0;
 }
 
 /* Button styles */
@@ -751,4 +756,124 @@ body {
 /* Optional: Add padding around the image if needed */
 .card-image {
   padding: 10px;
+}
+
+.want-text {
+  margin-top: 10px;
+  color: #666;
+  font-style: italic;
+}
+
+/* Want Section Styles */
+.want-section {
+  margin: 25px 0;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.want-section .button {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.want-text {
+  margin-top: 12px;
+  color: #495057;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* Update existing card actions spacing */
+.card-actions {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
+}
+
+.sign-in-prompt {
+  text-align: center;
+  padding: 15px;
+  color: #666;
+}
+
+.sign-in-prompt a:not(.button) {
+  color: #2196F3;
+  text-decoration: none;
+}
+
+.sign-in-prompt a:not(.button):hover {
+  text-decoration: underline;
+}
+
+/* Filters Section */
+.filters-section {
+  margin: 20px 0 30px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.filters-form {
+  margin: 0;
+}
+
+.filters-row {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  flex: 0 0 200px;
+}
+
+.search-group {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  gap: 10px;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: white;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.search-input:focus,
+.filter-select:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+/* No Results Message */
+.no-results {
+  text-align: center;
+  padding: 40px;
+  background: white;
+  border-radius: 8px;
+  color: #666;
+}
+
+.no-results p {
+  margin: 0;
+  font-size: 1.1rem;
 }
