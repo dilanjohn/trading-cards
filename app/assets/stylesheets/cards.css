@@ -46,27 +46,40 @@ body {
 
 .card {
   border: 1px solid #e1e1e1;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
   background: white;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .card-image {
   width: 100%;
-  height: 200px;
+  position: relative;
+  background: #f8f8f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
+  border-radius: 8px 8px 0 0;
 }
 
 .card-image img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  aspect-ratio: 1;
+  background: #f8f8f8;
 }
 
 .card-content {
@@ -716,4 +729,26 @@ body {
   background-color: #fff3f3;
   color: #dc3545;
   border: 2px solid #f5c6cb;
+}
+
+/* Footer Styles */
+.main-footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  color: #666;
+}
+
+.main-footer p {
+  margin: 0;
+}
+
+/* Remove the separate View Details button since the whole card is clickable */
+.card .button.secondary {
+  display: none;
+}
+
+/* Optional: Add padding around the image if needed */
+.card-image {
+  padding: 10px;
 }

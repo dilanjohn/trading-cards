@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', function() {
+// Initialize camera functionality
+function initializeCamera() {
   const startButton = document.getElementById('start-camera');
   if (!startButton) return;
 
@@ -16,8 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
   let stream = null;
   let cropper = null;
 
+  // Clean up any existing event listeners
+  startButton.replaceWith(startButton.cloneNode(true));
+  const newStartButton = document.getElementById('start-camera');
+
   // Start camera function
-  startButton.addEventListener('click', async function() {
+  newStartButton.addEventListener('click', async function() {
     console.log('Starting camera...');
     try {
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
@@ -25,11 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       stream = await navigator.mediaDevices.getUserMedia({
-        video: {
-          facingMode: 'environment',
-          width: { ideal: 1280 },
-          height: { ideal: 720 }
-        },
+        video: { facingMode: 'environment' },
         audio: false
       });
 
@@ -37,21 +38,13 @@ document.addEventListener('DOMContentLoaded', function() {
       
       video.srcObject = stream;
       video.style.display = 'block';
-      
-      await new Promise((resolve) => {
-        video.onloadedmetadata = () => {
-          console.log('Video metadata loaded');
-          resolve();
-        };
-      });
-
-      await video.play();
-      console.log('Video playing');
-      
-      startButton.style.display = 'none';
+      newStartButton.style.display = 'none';
       takePhotoButton.style.display = 'inline-block';
       cropperContainer.style.display = 'none';
       previewContainer.style.display = 'none';
+
+      await video.play();
+      console.log('Video playing');
       
     } catch (err) {
       console.error('Detailed camera error:', err);
@@ -70,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
       alert(errorMessage);
       
       video.style.display = 'none';
-      startButton.style.display = 'inline-block';
+      newStartButton.style.display = 'inline-block';
       takePhotoButton.style.display = 'none';
     }
   });
@@ -143,10 +136,26 @@ document.addEventListener('DOMContentLoaded', function() {
     if (cropper) {
       cropper.destroy();
     }
-    startButton.click();
+    newStartButton.click();
   });
 
   retakeFinalButton.addEventListener('click', function() {
-    startButton.click();
+    newStartButton.click();
   });
+}
+
+// Initialize on first load
+document.addEventListener('DOMContentLoaded', initializeCamera);
+
+// Initialize on Turbo navigation
+document.addEventListener('turbo:load', initializeCamera);
+
+// Clean up when navigating away
+document.addEventListener('turbo:before-cache', () => {
+  const video = document.getElementById('camera-preview');
+  if (video && video.srcObject) {
+    const tracks = video.srcObject.getTracks();
+    tracks.forEach(track => track.stop());
+    video.srcObject = null;
+  }
 }); 
