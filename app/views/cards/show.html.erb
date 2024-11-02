@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="card-detail">
+    <div class="card-detail-header">
+      <h1><%= @card.title %></h1>
+      <div class="card-owner-info">
+        From <%= @card.user.full_name %>'s collection
+      </div>
+    </div>
+
+    <div class="card-detail-content">
+      <div class="card-detail-image">
+        <%= image_tag @card.image if @card.image.attached? %>
+      </div>
+
+      <div class="card-detail-info">
+        <div class="card-metadata">
+          <span class="card-type <%= @card.card_type.downcase %>">
+            <%= @card.card_type %>
+          </span>
+          <span class="card-status <%= @card.status.gsub(' ', '-') %>">
+            <%= @card.status %>
+          </span>
+        </div>
+
+        <div class="card-price">
+          <%= number_to_currency(@card.price) %>
+        </div>
+
+        <% if @card.description.present? %>
+          <div class="card-description">
+            <h3>Description</h3>
+            <p><%= @card.description %></p>
+          </div>
+        <% end %>
+
+        <div class="card-actions">
+          <%= link_to 'Back to Collection', cards_path, class: 'button secondary' %>
+          <% if current_user == @card.user %>
+            <%= link_to 'Edit Card', edit_card_path(@card), class: 'button primary' %>
+            <%= link_to 'Delete Card', 
+                card_path(@card), 
+                data: { 
+                  turbo_method: :delete,
+                  turbo_confirm: 'Are you sure you want to delete this card?' 
+                },
+                class: 'button delete' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

@@ -1,16 +1,53 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TradingCards</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dilan.co - Trading Card Collection</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application" %>
     <%= javascript_importmap_tags %>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
   </head>
-
   <body>
-    <%= yield %>
+    <header class="main-header">
+      <div class="header-content">
+        <div class="logo">
+          <%= link_to "Dilan.co", root_path %>
+        </div>
+        <nav>
+          <% if user_signed_in? %>
+            <%= link_to "My Collection", cards_path %>
+            <%= link_to "Update Profile", edit_user_registration_path %>
+            <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete } %>
+          <% else %>
+            <%= link_to "Sign In", new_user_session_path %>
+            <%= link_to "Join", new_user_registration_path %>
+          <% end %>
+        </nav>
+      </div>
+    </header>
+
+    <% if notice %>
+      <div class="flash flash-notice">
+        <%= notice %>
+      </div>
+    <% end %>
+    
+    <% if alert %>
+      <div class="flash flash-alert">
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <main class="main-content">
+      <%= yield %>
+    </main>
+
+    <footer class="main-footer">
+      <p>&copy; <%= Time.current.year %> Dilan.co. All rights reserved.</p>
+    </footer>
   </body>
 </html>

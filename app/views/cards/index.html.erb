@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="collection-header">
+    <h1>Trading Card Collection</h1>
+    
+    <% if user_signed_in? %>
+      <div class="user-dashboard">
+        <h2>Welcome, <%= current_user.first_name %>!</h2>
+        <%= link_to 'Add a new card', new_card_path, class: 'button primary' %>
+      </div>
+    <% else %>
+      <div class="welcome-section">
+        <h2>Welcome to Dilan.co!</h2>
+        <p>Create your own digital collection of trading cards. Share with friends and keep track of your valuable cards.</p>
+        <div class="cta-buttons">
+          <%= link_to 'Sign Up to Start Your Collection', new_user_registration_path, class: 'button primary' %>
+          <%= link_to 'Log In', new_user_session_path, class: 'button secondary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @cards.any? %>
+    <div class="cards-grid">
+      <% @cards.each do |card| %>
+        <div class="card">
+          <div class="card-image">
+            <%= image_tag card.image if card.image.attached? %>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title"><%= card.title %></h3>
+            
+            <div class="card-metadata">
+              <span class="card-type <%= card.card_type.downcase %>">
+                <%= card.card_type %>
+              </span>
+              <span class="card-status <%= card.status.gsub(' ', '-') %>">
+                <%= card.status %>
+              </span>
+            </div>
+            
+            <div class="card-price">
+              <%= number_to_currency(card.price) %>
+            </div>
+            
+            <div class="card-owner">
+              Added by <%= card.user.full_name %>
+            </div>
+            
+            <div class="card-actions">
+              <%= link_to 'View Details', card_path(card), class: 'button secondary' %>
+              <% if current_user == card.user %>
+                <%= link_to 'Edit', edit_card_path(card), class: 'button' %>
+                <%= link_to 'Delete', 
+                    card_path(card), 
+                    data: { 
+                      turbo_method: :delete,
+                      turbo_confirm: 'Are you sure you want to delete this card?' 
+                    },
+                    class: 'button delete' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="empty-state">
+      <p>No cards have been added to the collection yet.</p>
+      <% if user_signed_in? %>
+        <p>Be the first to add a card!</p>
+        <%= link_to 'Add a Card', new_card_path, class: 'button primary' %>
+      <% end %>
+    </div>
+  <% end %>
+</div> 

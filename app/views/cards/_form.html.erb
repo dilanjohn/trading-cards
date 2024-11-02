@@ -1,0 +1,76 @@
+<%= form_with(model: @card, local: true, class: 'card-form') do |f| %>
+  <% if @card.errors.any? %>
+    <div class="error-messages">
+      <h2><%= pluralize(@card.errors.count, "error") %> prohibited this card from being saved:</h2>
+      <ul>
+        <% @card.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :image, "Card Image" %>
+    <div class="image-capture-container">
+      <!-- Camera preview -->
+      <video id="camera-preview" autoplay playsinline style="display: none;"></video>
+      
+      <!-- Cropper container -->
+      <div id="cropper-container" style="display: none;">
+        <img id="cropper-image" src="">
+        <div class="cropper-controls">
+          <button type="button" id="crop-button" class="button primary">Crop Image</button>
+          <button type="button" id="retake-photo" class="button secondary">Retake Photo</button>
+        </div>
+      </div>
+
+      <!-- Final preview -->
+      <div id="preview-container" style="display: none;">
+        <img id="preview-image" alt="Preview">
+        <button type="button" id="retake-final" class="button secondary">Retake Photo</button>
+      </div>
+      
+      <!-- Camera controls -->
+      <div class="camera-controls">
+        <button type="button" id="start-camera" class="button secondary">Open Camera</button>
+        <button type="button" id="take-photo" class="button primary" style="display: none;">Take Photo</button>
+      </div>
+
+      <!-- Hidden file input -->
+      <%= f.file_field :image, accept: 'image/*', class: 'hidden-file-input', style: 'display: none;' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="form-group price-field">
+    <%= f.label :price %>
+    <div class="price-input-container">
+      <span class="dollar-sign">$</span>
+      <%= f.number_field :price, step: '0.01', min: '0', placeholder: '0.00', class: 'price-input' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :status %>
+    <%= f.select :status, ['for sale', 'not for sale'], required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :card_type %>
+    <%= f.select :card_type, ['baseball', 'pokemon', 'football'], required: true %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit 'Save Card', class: 'button primary', data: { disable_with: 'Saving...' } %>
+  </div>
+<% end %>

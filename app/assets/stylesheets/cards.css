@@ -1,0 +1,719 @@
+/* General styles */
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header styles */
+.main-header {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 1rem 0;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  text-decoration: none;
+}
+
+/* Card grid styles */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px 0;
+}
+
+.card {
+  border: 1px solid #e1e1e1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-title {
+  margin: 0 0 15px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.card-metadata {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.card-type,
+.card-status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Card type badges */
+.card-type.pokemon {
+  background-color: #ffcb05;
+  color: #333;
+}
+
+.card-type.baseball {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.card-type.football {
+  background-color: #795548;
+  color: white;
+}
+
+/* Status badges */
+.card-status.for-sale {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.card-status.not-for-sale {
+  background-color: #9e9e9e;
+  color: white;
+}
+
+.card-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2196F3;
+  margin: 15px 0;
+}
+
+.card-owner {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Button styles */
+.button {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.button.primary {
+  background-color: #2196F3;
+  color: white;
+}
+
+.button.secondary {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+.button.delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Flash messages */
+.flash {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  text-align: center;
+  animation: fadeOut 5s ease-in-out forwards;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  min-width: 300px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Auth forms */
+.auth-container {
+  max-width: 450px;
+  margin: 60px auto;
+  padding: 40px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.auth-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Auth Form Fields */
+.auth-container .field {
+  margin-bottom: 25px;
+}
+
+.auth-container .field label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.auth-container .field input[type="email"],
+.auth-container .field input[type="password"],
+.auth-container .field input[type="text"] {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e1e1e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background-color: #f8f9fa;
+}
+
+.auth-container .field input:focus {
+  outline: none;
+  border-color: #2196F3;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.1);
+}
+
+.auth-container .field small {
+  display: block;
+  color: #666;
+  font-size: 0.875rem;
+  margin-top: 8px;
+}
+
+/* Auth Actions */
+.auth-container .actions {
+  margin-top: 35px;
+  margin-bottom: 30px;
+}
+
+.auth-container .actions input[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.auth-container .actions input[type="submit"]:hover {
+  background-color: #1976D2;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.auth-container .actions input[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* Shared Links */
+.shared-links {
+  text-align: center;
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.shared-links a {
+  color: #2196F3;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  display: inline-block;
+  margin: 5px 0;
+}
+
+.shared-links a:hover {
+  color: #1976D2;
+  text-decoration: underline;
+}
+
+/* Error Messages */
+#error_explanation {
+  margin-bottom: 25px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff3f3;
+  border: 2px solid #dc3545;
+}
+
+#error_explanation h2 {
+  font-size: 1.1rem;
+  color: #dc3545;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+#error_explanation ul {
+  color: #dc3545;
+  margin: 0;
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+/* Remember Me Checkbox */
+.field.remember-me {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  padding: 5px 0;
+}
+
+.field.remember-me input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.field.remember-me label {
+  margin: 0;
+  font-weight: normal;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Profile Edit Styles */
+.profile-edit {
+  max-width: 500px;
+}
+
+.profile-edit h2 {
+  color: #333;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.profile-edit .field {
+  margin-bottom: 20px;
+}
+
+.profile-edit .field label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
+}
+
+.profile-edit .field small {
+  display: block;
+  color: #666;
+  font-size: 0.875rem;
+  margin-top: 2px;
+}
+
+.profile-edit .field input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.profile-edit .field input:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+.profile-edit .actions {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.profile-edit .current-password {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.account-actions {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.account-actions h3 {
+  color: #dc3545;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.account-actions p {
+  color: #666;
+  margin-bottom: 15px;
+}
+
+/* Update header nav styles */
+.main-header nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.main-header nav a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.main-header nav a:hover {
+  background-color: #f5f5f5;
+}
+
+/* Card Detail Page Styles */
+.card-detail {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin: 40px 0;
+  overflow: hidden;
+}
+
+.card-detail-header {
+  padding: 30px;
+  border-bottom: 1px solid #eee;
+}
+
+.card-detail-header h1 {
+  margin: 0 0 10px 0;
+  font-size: 2rem;
+  color: #333;
+}
+
+.card-owner-info {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.card-detail-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 30px;
+}
+
+.card-detail-image {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-detail-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card-detail-info .card-metadata {
+  margin-bottom: 20px;
+}
+
+.card-detail-info .card-price {
+  font-size: 2rem;
+  color: #2196F3;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.card-description {
+  margin-top: 20px;
+}
+
+.card-description h3 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.card-description p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.card-detail .card-actions {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card-detail-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .card-detail-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .card-detail-info .card-price {
+    font-size: 1.5rem;
+  }
+}
+
+/* Add or update these form styles in your CSS */
+
+/* Form Container */
+.card-form {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.form-group textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+/* Image Capture Container */
+.image-capture-container {
+  margin: 15px 0;
+  padding: 20px;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  text-align: center;
+}
+
+#camera-preview {
+  width: 100%;
+  max-width: 400px;
+  margin: 15px auto;
+  border-radius: 8px;
+}
+
+#preview-container {
+  margin: 15px 0;
+}
+
+#preview-image {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+}
+
+/* Camera Controls */
+.camera-controls {
+  margin: 15px 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Price Input Specific */
+.price-input-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.dollar-sign {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #495057;
+}
+
+.price-input {
+  padding-left: 25px !important;
+}
+
+/* Form Actions */
+.form-actions {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.form-actions .button {
+  min-width: 120px;
+}
+
+/* Error Messages */
+.error-messages {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: #fff3f3;
+  border: 1px solid #dc3545;
+  color: #dc3545;
+}
+
+.error-messages h2 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.error-messages ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+/* Add to your existing CSS */
+
+/* Cropper container styles */
+#cropper-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#cropper-image {
+  max-width: 100%;
+  display: block;
+}
+
+.cropper-controls {
+  margin: 15px 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Make sure the cropper view is contained */
+.cropper-container {
+  max-width: 100% !important;
+}
+
+/* Ensure proper spacing for all controls */
+.camera-controls,
+.cropper-controls {
+  margin: 15px 0;
+  padding: 10px;
+}
+
+/* Preview image container */
+#preview-container {
+  text-align: center;
+  margin: 15px 0;
+}
+
+#preview-image {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Flash Messages - Enhanced */
+.flash {
+  padding: 16px 20px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-align: center;
+  animation: fadeOut 5s ease-in-out forwards;
+}
+
+.flash-notice {
+  background-color: #e3f2fd;
+  color: #1976D2;
+  border: 2px solid #90caf9;
+}
+
+.flash-alert {
+  background-color: #fff3f3;
+  color: #dc3545;
+  border: 2px solid #f5c6cb;
+}
