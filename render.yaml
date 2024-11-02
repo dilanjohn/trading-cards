@@ -16,18 +16,6 @@ services:
         fromDatabase:
           name: dilan_co_postgres
           property: connectionString
-      - key: POSTGRES_USER
-        fromDatabase:
-          name: dilan_co_postgres
-          property: user
-      - key: POSTGRES_PASSWORD
-        fromDatabase:
-          name: dilan_co_postgres
-          property: password
-      - key: POSTGRES_HOST
-        fromDatabase:
-          name: dilan_co_postgres
-          property: host
       - key: RAILS_MASTER_KEY
         sync: false
       - key: RAILS_ENV
