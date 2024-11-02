@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "want-button-#{card.id}" do %>
+  <%= button_to toggle_want_card_path(card), 
+      method: :post,
+      class: "button #{wanted ? 'secondary' : 'primary'}" do %>
+    <%= wanted ? "Remove Want" : "I Want This" %>
+  <% end %>
+<% end %> 

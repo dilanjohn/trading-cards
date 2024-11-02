@@ -1,0 +1,25 @@
+<%= link_to card_path(card), class: "card" do %>
+  <div class="card-image">
+    <%= image_tag card.image if card.image.attached? %>
+  </div>
+  <div class="card-content">
+    <h3 class="card-title"><%= card.title %></h3>
+    
+    <div class="card-metadata">
+      <span class="card-type <%= card.card_type.downcase %>">
+        <%= card.card_type %>
+      </span>
+      <span class="card-status <%= card.status.gsub(' ', '-') %>">
+        <%= card.status %>
+      </span>
+    </div>
+    
+    <div class="card-price">
+      <%= number_to_currency(card.price) %>
+    </div>
+    
+    <div class="card-owner">
+      Added by <%= card.user.first_name %>
+    </div>
+  </div>
+<% end %> 
