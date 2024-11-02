@@ -2,13 +2,13 @@ databases:
   - name: dilan_co_postgres
     databaseName: dilan_co_production
     user: dilan_co
-    plan: starter
+    plan: free
 
 services:
   - type: web
     name: dilan_co
     runtime: ruby
-    plan: starter
+    plan: free
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
