@@ -1,8 +1,9 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
+// Configure your importmap in config/importmap.rb with pin "@hotwired/turbo-rails", to: "turbo.min.js"
+
 import "@hotwired/turbo-rails"
 import "controllers"
-import "./custom/camera"
-import "./custom/form_debug"
+import "custom/camera"
+import "custom/form_debug"
 
 // Add this to verify the file is loading
 console.log('Application.js loaded');
