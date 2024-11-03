@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     post 'reject_user/:id', to: 'admin#reject_user', as: :reject_user
     post 'whitelist', to: 'admin#add_to_whitelist'
     delete 'whitelist/:id', to: 'admin#remove_from_whitelist', as: :remove_from_whitelist
+    resources :cards, only: [:index]
   end
 
   get 'pending_approval', to: 'pages#pending_approval'
