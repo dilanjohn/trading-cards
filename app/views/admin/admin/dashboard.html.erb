@@ -1,0 +1,23 @@
+<div class="admin-section">
+  <h2>Admin Dashboard</h2>
+  
+  <div class="dashboard-stats">
+    <div class="stat-card">
+      <h3>Pending Users</h3>
+      <p class="stat-number"><%= User.where(approved: false).count %></p>
+      <%= link_to "View Pending Users", admin_pending_users_path, class: "button primary" %>
+    </div>
+
+    <div class="stat-card">
+      <h3>Approved Users</h3>
+      <p class="stat-number"><%= User.where(approved: true).count %></p>
+      <%= link_to "View Approved Users", admin_approved_users_path, class: "button primary" %>
+    </div>
+
+    <div class="stat-card">
+      <h3>Whitelisted Emails</h3>
+      <p class="stat-number"><%= WhitelistedEmail.count %></p>
+      <%= link_to "Manage Whitelist", admin_whitelist_path, class: "button primary" %>
+    </div>
+  </div>
+</div> 

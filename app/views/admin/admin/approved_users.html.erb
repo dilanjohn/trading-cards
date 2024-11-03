@@ -1,0 +1,48 @@
+<div class="admin-section">
+  <h2>Approved Users</h2>
+  
+  <% if @users.any? %>
+    <div class="table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Joined</th>
+            <th>Cards</th>
+            <th>Admin</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.first_name %> <%= user.last_name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.created_at.strftime("%B %d, %Y") %></td>
+              <td><%= user.cards.count %></td>
+              <td>
+                <% if user.admin? %>
+                  <span class="badge admin">Admin</span>
+                <% end %>
+              </td>
+              <td>
+                <% unless user.admin? %>
+                  <%= button_to "Revoke Approval", 
+                      admin_revoke_approval_path(user), 
+                      method: :post, 
+                      class: "button delete small",
+                      data: { 
+                        turbo_confirm: "Are you sure? This user will no longer be able to access their account until re-approved."
+                      } %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="no-results">No approved users found</p>
+  <% end %>
+</div> 

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin - Dilan.co</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body class="admin-layout">
+    <div class="admin-container">
+      <div class="admin-sidebar">
+        <h1>Admin</h1>
+        <nav>
+          <%= link_to "Dashboard", admin_path, class: "nav-link" %>
+          <%= link_to "Pending Users", admin_pending_users_path, class: "nav-link" %>
+          <%= link_to "Approved Users", admin_approved_users_path, class: "nav-link" %>
+          <%= link_to "Rejected Users", admin_rejected_users_path, class: "nav-link" %>
+          <%= link_to "Email Whitelist", admin_whitelist_path, class: "nav-link" %>
+          <%= link_to "Back to Site", root_path, class: "nav-link" %>
+        </nav>
+      </div>
+
+      <div class="admin-content">
+        <% if notice %>
+          <div class="alert alert-success"><%= notice %></div>
+        <% end %>
+        <% if alert %>
+          <div class="alert alert-danger"><%= alert %></div>
+        <% end %>
+
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html> 

@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="approval-pending-card">
+    <h1>Account Pending Approval</h1>
+    
+    <div class="approval-message">
+      <p>Thank you for signing up! Your account is currently pending approval.</p>
+      <p>You'll receive an email when your account has been approved.</p>
+    </div>
+
+    <div class="approval-actions">
+      <%= link_to "Return Home", root_path, class: "button secondary" %>
+      <%= button_to "Sign Out", destroy_user_session_path, 
+          method: :delete, 
+          class: "button primary" %>
+    </div>
+  </div>
+</div> 

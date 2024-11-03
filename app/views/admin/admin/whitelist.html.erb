@@ -1,0 +1,44 @@
+<div class="admin-section">
+  <h2>Email Whitelist</h2>
+
+  <div class="whitelist-form">
+    <%= form_with(model: @whitelisted_email, url: admin_whitelist_path) do |f| %>
+      <div class="field-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-input" %>
+        <%= f.submit "Add to Whitelist", class: "button primary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @whitelisted_emails.any? %>
+    <div class="table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Added On</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @whitelisted_emails.each do |email| %>
+            <tr>
+              <td><%= email.email %></td>
+              <td><%= email.created_at.strftime("%B %d, %Y") %></td>
+              <td>
+                <%= button_to "Remove", 
+                    admin_remove_from_whitelist_path(email), 
+                    method: :delete,
+                    class: "button delete small",
+                    data: { confirm: "Are you sure?" } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="no-results">No whitelisted emails</p>
+  <% end %>
+</div> 

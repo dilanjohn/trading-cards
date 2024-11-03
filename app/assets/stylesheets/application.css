@@ -13,3 +13,67 @@
  *= require_tree .
  *= require_self
  */
+
+.approval-pending-card {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.approval-message {
+  margin: 25px 0;
+  color: #666;
+  line-height: 1.6;
+}
+
+.approval-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.approval-actions form {
+  margin: 0;
+}
+
+.admin-link-container {
+  display: inline-block;
+  position: relative;
+}
+
+.pending-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #dc3545;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.admin-link {
+  position: relative;
+  display: inline-block;
+  background: #2196F3;
+  color: white !important;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.admin-link:hover {
+  background: #1976D2;
+}

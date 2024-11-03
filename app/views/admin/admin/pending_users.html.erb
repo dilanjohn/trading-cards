@@ -1,0 +1,42 @@
+<div class="admin-section">
+  <h2>Pending Users</h2>
+  
+  <% if @users.any? %>
+    <div class="table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Signed Up</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.first_name %> <%= user.last_name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.created_at.strftime("%B %d, %Y") %></td>
+              <td class="action-buttons">
+                <%= button_to "Approve", 
+                    admin_approve_user_path(user), 
+                    method: :post, 
+                    class: "button primary small" %>
+                <%= button_to "Reject", 
+                    admin_reject_user_path(user), 
+                    method: :post,
+                    class: "button delete small",
+                    data: { 
+                      turbo_confirm: "Are you sure you want to reject this user? They won't be able to register again with this email."
+                    } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="no-results">No pending users</p>
+  <% end %>
+</div> 

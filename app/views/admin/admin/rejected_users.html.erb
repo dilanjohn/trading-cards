@@ -1,0 +1,40 @@
+<div class="admin-section">
+  <h2>Rejected Users</h2>
+  
+  <% if @users.any? %>
+    <div class="table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Signed Up</th>
+            <th>Rejected On</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.first_name %> <%= user.last_name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.created_at.strftime("%B %d, %Y") %></td>
+              <td><%= user.updated_at.strftime("%B %d, %Y") %></td>
+              <td>
+                <%= button_to "Approve", 
+                    admin_approve_user_path(user), 
+                    method: :post, 
+                    class: "button primary small",
+                    data: { 
+                      turbo_confirm: "Are you sure you want to approve this previously rejected user?"
+                    } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="no-results">No rejected users</p>
+  <% end %>
+</div> 
